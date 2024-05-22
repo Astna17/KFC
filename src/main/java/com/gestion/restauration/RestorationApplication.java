@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestaurationApplication {
+public class RestorationApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RestaurationApplication.class, args);
+        SpringApplication.run(RestorationApplication.class, args);
     }
 
 }

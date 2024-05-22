@@ -11,8 +11,8 @@
     <groupId>com.gestion</groupId>
     <artifactId>Restauration</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Restauration</name>
-    <description>Restauration</description>
+    <name>Restoration</name>
+    <description>Restoration</description>
     <properties>
         <java.version>17</java.version>
     </properties>
