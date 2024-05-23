@@ -1,5 +1,5 @@
-CREATE TABLE "ingredient_menu" (
-      id_ingredient_menu SERIAL PRIMARY KEY,
+CREATE TABLE "composition_menu" (
+      id_composition SERIAL PRIMARY KEY,
       id_menu INT NOT NULL,
       id_ingredient INT NOT NULL,
       quantity_required DOUBLE PRECISION NOT NULL,
