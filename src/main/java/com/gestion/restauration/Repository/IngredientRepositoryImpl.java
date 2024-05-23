@@ -68,7 +68,7 @@ public class IngredientRepositoryImpl implements IngredientRepository{
         if (ingredientUpdated > 0) {
             return updateIngredient;
         }
-        return mapResultSetToIngredient(preparedStatement.getResultSet());
+        return null;
     }
 
 }
