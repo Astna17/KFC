@@ -31,7 +31,7 @@ public class PriceServiceImpl implements PriceService{
     }
 
     @Override
-    public Price updatePrice(Price updatePrice) throws SQLException {
+    public Price updatePrice(int idPrice, Price updatePrice) throws SQLException {
         return priceRepository.updatePrice(updatePrice);
     }
 }

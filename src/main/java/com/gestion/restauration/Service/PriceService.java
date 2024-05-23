@@ -11,5 +11,5 @@ public interface PriceService {
     List<Price> getAllPrices() throws SQLException;
     int getPriceById(int isPrice) throws SQLException;
     Price createPrice(Price createPrice) throws SQLException;
-    Price updatePrice(Price updatePrice) throws SQLException;
+    Price updatePrice(int idPrice, Price updatePrice) throws SQLException;
 }
