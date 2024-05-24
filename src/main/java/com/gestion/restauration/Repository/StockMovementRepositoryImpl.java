@@ -1,19 +1,23 @@
 package com.gestion.restauration.Repository;
 
 import com.gestion.restauration.Configuration.DatabaseConnection;
+import com.gestion.restauration.Entity.Ingredient;
 import com.gestion.restauration.Entity.StockMovement;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class StockMovementRepositoryImpl implements StockMovementRepository{
     private final Connection connection = DatabaseConnection.getConnection();
+    private final IngredientRepository ingredientRepository;
+
+    public StockMovementRepositoryImpl(IngredientRepository ingredientRepository) {
+        this.ingredientRepository = ingredientRepository;
+    }
+
     private StockMovement mapResultSetToMovement(ResultSet resultSet) throws SQLException {
         StockMovement stockMovement = new StockMovement();
         stockMovement.setIdStockMovement(resultSet.getInt(StockMovement.ID_STOCK_MOVEMENT));
@@ -79,5 +83,20 @@ public class StockMovementRepositoryImpl implements StockMovementRepository{
             return new StockMovement();
         }
         return updateMovement;
+    }
+    public StockMovement updateIngredientStock(int idIngredient, double restQuantity, Timestamp movementDate) throws SQLException {
+        Ingredient ingredientUpdated = ingredientRepository.getIngredientById(idIngredient);
+        if (ingredientUpdated != null) {
+            ingredientUpdated.setStock(ingredientUpdated.getStock() + restQuantity);
+            ingredientRepository.updateIngredient(ingredientUpdated);
+        }
+        StockMovement stockMovement = new StockMovement();
+
+        stockMovement.setIdIngredient(idIngredient);
+        stockMovement.setRestQuantity(restQuantity);
+        stockMovement.setMovementDate(movementDate);
+        stockMovement.setMovementType("enter");
+
+        return updateStockMovement(stockMovement);
     }
 }

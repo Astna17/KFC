@@ -5,6 +5,7 @@ import com.gestion.restauration.Repository.StockMovementRepository;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -33,5 +34,11 @@ public class StockMovementServiceImpl implements StockMovementService{
     @Override
     public StockMovement updateStockMovement(int idStockMovement, StockMovement updateMovement) throws SQLException {
         return stockMovementRepository.updateStockMovement(updateMovement);
+    }
+
+    @Override
+    public StockMovement updateIngredientStock(int idIngredient, double restQuantity, Timestamp movementDate) throws SQLException {
+        stockMovementRepository.updateIngredientStock(idIngredient, restQuantity, movementDate);
+        return null;
     }
 }

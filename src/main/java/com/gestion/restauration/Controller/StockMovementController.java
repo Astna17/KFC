@@ -2,9 +2,11 @@ package com.gestion.restauration.Controller;
 
 import com.gestion.restauration.Entity.StockMovement;
 import com.gestion.restauration.Service.StockMovementService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
@@ -30,5 +32,9 @@ public class StockMovementController {
     @PutMapping("/stockMovement/{idStockMovement}")
     public StockMovement updateStockMovement(@PathVariable int idStockMovement, @RequestBody StockMovement updateMovement) throws SQLException{
         return stockMovementService.updateStockMovement(idStockMovement, updateMovement);
+    }
+    @PutMapping("/stockMovement")
+    public StockMovement addStockMovementForNewIngredient(@RequestParam int idIngredient, @RequestParam double restQuantity, @RequestParam Timestamp movementDate) throws SQLException {
+        return stockMovementService.updateIngredientStock(idIngredient, restQuantity, movementDate);
     }
 }
