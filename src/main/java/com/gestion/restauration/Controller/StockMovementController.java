@@ -1,0 +1,34 @@
+package com.gestion.restauration.Controller;
+
+import com.gestion.restauration.Entity.StockMovement;
+import com.gestion.restauration.Service.StockMovementService;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.SQLException;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api")
+public class StockMovementController {
+    private final StockMovementService stockMovementService;
+
+    public StockMovementController(StockMovementService stockMovementService) {
+        this.stockMovementService = stockMovementService;
+    }
+    @GetMapping("/stockMovement")
+    public List<StockMovement> getAllMovements() throws SQLException {
+        return stockMovementService.getAllMovements();
+    }
+    @GetMapping("/stockMovement/{idStockMovement}")
+    public int getStockMovementById(@PathVariable int idStockMovement) throws SQLException{
+        return stockMovementService.getStockMovementById(idStockMovement);
+    }
+    @PostMapping("/stockMovement")
+    public StockMovement createStockMovement(@RequestBody StockMovement createMovement) throws SQLException{
+        return stockMovementService.createStockMovement(createMovement);
+    }
+    @PutMapping("/stockMovement/{idStockMovement}")
+    public StockMovement updateStockMovement(@PathVariable int idStockMovement, @RequestBody StockMovement updateMovement) throws SQLException{
+        return stockMovementService.updateStockMovement(idStockMovement, updateMovement);
+    }
+}
