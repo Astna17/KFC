@@ -60,6 +60,20 @@ public class MenuRepositoryImpl implements MenuRepository{
         String sql = "UPDATE menu SET menu_name = ?, unit_price = ? WHERE id_menu = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         mapResultSetToMenu((ResultSet) updateMenu((Menu) preparedStatement));
-        return updateMenu;
+        var menuUpdated = preparedStatement.executeUpdate();
+        if (menuUpdated > 0) {
+            return updateMenu;
+        }
+        else return null;
     }
+    @Override
+    public Menu deleteMenu(Menu menu) throws SQLException {
+        int menuId = menu.getIdMenu();
+        String sql = "DELETE FROM menu WHERE id_menu = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, menuId);
+        preparedStatement.executeUpdate();
+        return menu;
+    }
+
 }

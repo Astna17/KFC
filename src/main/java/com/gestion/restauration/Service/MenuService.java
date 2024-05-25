@@ -12,4 +12,5 @@ public interface MenuService {
     int getMenuById(int idMenu) throws SQLException;
     Menu createMenu(Menu createMenu) throws SQLException;
     Menu updateMenu(int idMenu, Menu updateMenu) throws SQLException;
+    Menu deleteMenu(int idMenu, Menu menu) throws SQLException;
 }

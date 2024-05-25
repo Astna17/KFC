@@ -32,4 +32,8 @@ public class MenuController {
     public Menu updateMenu(@PathVariable int idMenu, @RequestBody Menu updateMenu) throws SQLException {
         return menuService.updateMenu(idMenu, updateMenu);
     }
+    @DeleteMapping("/menu/{idMenu}")
+    public Menu deleteMenu(@PathVariable int idMenu, @RequestBody Menu deleteMenu) throws SQLException {
+        return menuService.deleteMenu(idMenu, deleteMenu);
+    }
 }
