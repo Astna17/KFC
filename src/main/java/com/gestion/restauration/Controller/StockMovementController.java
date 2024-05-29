@@ -30,11 +30,20 @@ public class StockMovementController {
         return stockMovementService.createStockMovement(createMovement);
     }
     @PutMapping("/stockMovement/{idStockMovement}")
-    public StockMovement updateStockMovement(@PathVariable int idStockMovement, @RequestBody StockMovement updateMovement) throws SQLException{
+    public StockMovement updateStockMovement(
+            @PathVariable int idStockMovement,
+            @RequestBody StockMovement updateMovement) throws SQLException{
         return stockMovementService.updateStockMovement(idStockMovement, updateMovement);
     }
     @PutMapping("/stockMovement")
-    public StockMovement addStockMovementForNewIngredient(@RequestParam int idIngredient, @RequestParam double restQuantity, @RequestParam Timestamp movementDate) throws SQLException {
+    public StockMovement addStockMovementForNewIngredient(
+            @RequestParam int idIngredient,
+            @RequestParam double restQuantity,
+            @RequestParam Timestamp movementDate) throws SQLException {
         return stockMovementService.updateIngredientStock(idIngredient, restQuantity, movementDate);
+    }
+    @GetMapping("/stockMovement")
+    public List<StockMovement> getStockMovements(@RequestParam("movementDate") Timestamp movementDate) throws SQLException {
+        return stockMovementService.getMovementsByDateRange(movementDate);
     }
 }

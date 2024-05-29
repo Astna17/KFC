@@ -97,6 +97,26 @@ public class StockMovementRepositoryImpl implements StockMovementRepository{
         stockMovement.setMovementDate(movementDate);
         stockMovement.setMovementType("enter");
 
-        return updateStockMovement(stockMovement);
+        updateStockMovement(stockMovement);
+        return stockMovement;
     }
+
+    @Override
+    public List<StockMovement> getMovementsByDateRange(Timestamp movementDate) throws SQLException {
+        String sql = "SELECT * FROM stock_movement WHERE movement_date BETWEEN ? AND ?";
+        List<StockMovement> movements = new ArrayList<>();
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setTimestamp(1, movementDate);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            StockMovement movement = new StockMovement();
+            getMovementsByDateRange(movementDate);
+
+           movements.add(movement);
+                }
+           return movements;
+        }
+
 }

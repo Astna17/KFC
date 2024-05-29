@@ -38,7 +38,11 @@ public class StockMovementServiceImpl implements StockMovementService{
 
     @Override
     public StockMovement updateIngredientStock(int idIngredient, double restQuantity, Timestamp movementDate) throws SQLException {
-        stockMovementRepository.updateIngredientStock(idIngredient, restQuantity, movementDate);
-        return null;
+        return stockMovementRepository.updateIngredientStock(idIngredient, restQuantity, movementDate);
+    }
+
+    @Override
+    public List<StockMovement> getMovementsByDateRange(Timestamp movementDate) throws SQLException {
+      return stockMovementRepository.getMovementsByDateRange(movementDate);
     }
 }
