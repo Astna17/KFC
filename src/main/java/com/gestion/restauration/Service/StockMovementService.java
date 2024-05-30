@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface StockMovementService {
@@ -15,4 +16,5 @@ public interface StockMovementService {
     StockMovement updateStockMovement(int idStockMovement, StockMovement updateMovement) throws SQLException;
     StockMovement updateIngredientStock(int idIngredient, double restQuantity, Timestamp movementDate) throws SQLException;
     List<StockMovement> getMovementsByDateRange(Timestamp movementDate) throws SQLException;
+    Map<Integer, Double> getRemainingStockByDateRange(Timestamp movementDate) throws  SQLException;
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -45,5 +46,9 @@ public class StockMovementController {
     @GetMapping("/stockMovement")
     public List<StockMovement> getStockMovements(@RequestParam("movementDate") Timestamp movementDate) throws SQLException {
         return stockMovementService.getMovementsByDateRange(movementDate);
+    }
+    @GetMapping("/stockMovement")
+    public Map<Integer, Double> getRemainingStock(@RequestParam("movementDate") Timestamp movementDate) throws SQLException {
+        return stockMovementService.getRemainingStockByDateRange(movementDate);
     }
 }
