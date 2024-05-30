@@ -37,15 +37,16 @@ public class CompositionMenuRepositoryImpl implements CompositionMenuRepository{
     }
 
     @Override
-    public int getCompositionMenuById(int idComposition) throws SQLException {
-        int compositionMenuId = new CompositionMenu().getIdComposition();
+    public List<CompositionMenu> getCompositionMenuById(int idComposition) throws SQLException {
+        List<CompositionMenu> compositionsMenuId = new ArrayList<>();
         String sql = "SELECT * FROM composition_menu WHERE id_composition = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, idComposition);
         ResultSet resultSet = preparedStatement.executeQuery();
-        if (resultSet.next()){
-            return mapResultSetToCompositionMenu(resultSet).getIdComposition();
+        while (resultSet.next()) {
+            compositionsMenuId.add(mapResultSetToCompositionMenu(resultSet));
         }
-        return compositionMenuId;
+        return compositionsMenuId;
     }
 
     @Override

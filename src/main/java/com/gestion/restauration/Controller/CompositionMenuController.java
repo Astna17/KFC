@@ -20,7 +20,7 @@ public class CompositionMenuController {
         return compositionMenuService.getAllCompositions();
     }
     @GetMapping("/compositionMenu/{idComposition}")
-    public int getCompositionById(@PathVariable int idComposition) throws SQLException {
+    public List<CompositionMenu> getCompositionById(@PathVariable int idComposition) throws SQLException {
         return compositionMenuService.getCompositionMenuById(idComposition);
     }
     @PostMapping("/compositionMenu")

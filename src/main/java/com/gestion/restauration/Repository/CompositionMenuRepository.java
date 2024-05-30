@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface CompositionMenuRepository {
     List<CompositionMenu> getAllCompositions() throws SQLException;
-    int getCompositionMenuById(int idComposition) throws SQLException;
+    List<CompositionMenu> getCompositionMenuById(int idComposition) throws SQLException;
     CompositionMenu createCompositionMenu(CompositionMenu createComposition) throws SQLException;
     CompositionMenu updateCompositionMenu(CompositionMenu updateComposition) throws SQLException;
 }

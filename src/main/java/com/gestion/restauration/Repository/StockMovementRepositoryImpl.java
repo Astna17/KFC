@@ -97,7 +97,7 @@ public class StockMovementRepositoryImpl implements StockMovementRepository{
         stockMovement.setIdIngredient(idIngredient);
         stockMovement.setRestQuantity(restQuantity);
         stockMovement.setMovementDate(movementDate);
-        stockMovement.setMovementType("enter");
+        stockMovement.setMovementType("in");
 
         updateStockMovement(stockMovement);
         return stockMovement;

@@ -53,16 +53,16 @@ public class SaleRepositoryImpl implements SaleRepository{
     }
 
     @Override
-    public Sale createSale(Sale createSale) throws SQLException {
+    public Sale createSale(Sale saleCreated) throws SQLException {
         String sql = "INSERT INTO sale (id_menu, id_restaurant, sale_date, quantity, total_amount) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, createSale.getIdMenu());
-            preparedStatement.setInt(2, createSale.getIdRestaurant());
-            preparedStatement.setTimestamp(3, createSale.getSaleDate());
-            preparedStatement.setDouble(4, createSale.getQuantity());
-            preparedStatement.setDouble(5, createSale.getTotalAmount());
+            preparedStatement.setInt(1, saleCreated.getIdMenu());
+            preparedStatement.setInt(2, saleCreated.getIdRestaurant());
+            preparedStatement.setTimestamp(3, saleCreated.getSaleDate());
+            preparedStatement.setDouble(4, saleCreated.getQuantity());
+            preparedStatement.setDouble(5, saleCreated.getTotalAmount());
             preparedStatement.executeUpdate();
         }
-        return createSale;
+        return saleCreated;
     }
 }

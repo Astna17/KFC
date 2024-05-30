@@ -1,5 +1,6 @@
 package com.gestion.restauration.Service;
 
+import com.gestion.restauration.Entity.CompositionMenu;
 import com.gestion.restauration.Entity.Menu;
 import com.gestion.restauration.Repository.CompositionMenuRepository;
 import com.gestion.restauration.Repository.MenuRepository;
@@ -11,21 +12,14 @@ import java.util.List;
 @Service
 public class MenuServiceImpl implements MenuService{
     private final MenuRepository menuRepository;
-    private final CompositionMenuRepository compositionMenuRepository;
 
-    public MenuServiceImpl(MenuRepository menuRepository, CompositionMenuRepository compositionMenuRepository) {
+    public MenuServiceImpl(MenuRepository menuRepository) {
         this.menuRepository = menuRepository;
-        this.compositionMenuRepository = compositionMenuRepository;
     }
 
     @Override
     public List<Menu> getAllMenus() throws SQLException {
-        List<Menu> menuList = menuRepository.getAllMenus();
-        for (Menu menu : menuList) {
-            int compositionMenuList = compositionMenuRepository.getCompositionMenuById(menu.getIdMenu());
-            menu.setIdMenu(compositionMenuList);
-        }
-        return menuList;
+        return menuRepository.getAllMenus();
     }
 
     @Override

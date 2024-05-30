@@ -60,9 +60,9 @@ public class StockMovementServiceImpl implements StockMovementService{
             remainingStock.putIfAbsent(ingredientId, 0.0);
             double currentStock = remainingStock.get(ingredientId);
 
-            if (type.equals("enter")) {
+            if (type.equals("in")) {
                 remainingStock.put(ingredientId, currentStock + quantity);
-            } else if (type.equals("exit")) {
+            } else if (type.equals("out")) {
                 remainingStock.put(ingredientId, currentStock - quantity);
             }
         }

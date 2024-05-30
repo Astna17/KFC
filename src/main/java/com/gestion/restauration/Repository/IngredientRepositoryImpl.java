@@ -18,6 +18,7 @@ public class IngredientRepositoryImpl implements IngredientRepository{
         Ingredient ingredient = new Ingredient();
         ingredient.setIdIngredient(resultSet.getInt(Ingredient.ID_INGREDIENT));
         ingredient.setIngredientName(resultSet.getString(Ingredient.INGREDIENT_NAME));
+        ingredient.setQuantity(resultSet.getDouble(Ingredient.QUANTITY));
         ingredient.setStock(resultSet.getDouble(Ingredient.STOCK));
 
         return ingredient;
@@ -49,21 +50,23 @@ public class IngredientRepositoryImpl implements IngredientRepository{
 
     @Override
     public Ingredient createIngredient(Ingredient createIngredient) throws SQLException {
-        String sql = "INSERT INTO ingredient (id_ingredient = ?, ingredient_name = ?, stock = ?";
+        String sql = "INSERT INTO ingredient (id_ingredient = ?, ingredient_name = ?, stock = ?, quantity = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, createIngredient.getIdIngredient());
         preparedStatement.setString(2, createIngredient.getIngredientName());
         preparedStatement.setDouble(3, createIngredient.getStock());
+        preparedStatement.setDouble(4, createIngredient.getQuantity());
         return createIngredient;
     }
 
     @Override
     public Ingredient updateIngredient(Ingredient updateIngredient) throws SQLException {
-        String sql = "UPDATE ingredient SET ingredient_name = ?, stock = ?, WHERE id_ingredient = ?";
+        String sql = "UPDATE ingredient SET ingredient_name = ?, stock = ?, quantity = ? WHERE id_ingredient = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, updateIngredient.getIngredientName());
         preparedStatement.setDouble(2, updateIngredient.getStock());
-        preparedStatement.setInt(3, updateIngredient.getIdIngredient());
+        preparedStatement.setDouble(3, updateIngredient.getQuantity());
+        preparedStatement.setInt(4, updateIngredient.getIdIngredient());
         int ingredientUpdated = preparedStatement.executeUpdate();
         if (ingredientUpdated > 0) {
             return updateIngredient;

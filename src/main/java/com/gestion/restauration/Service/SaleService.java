@@ -1,14 +1,14 @@
-package com.gestion.restauration.Repository;
+package com.gestion.restauration.Service;
 
 import com.gestion.restauration.Entity.Sale;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 
-@Repository
-public interface SaleRepository {
+@Service
+public interface SaleService {
     List<Sale> getAllSales() throws SQLException;
     Sale getSaleById(int idSale) throws SQLException;
-    Sale createSale(Sale saleCreated) throws SQLException;
+    Sale createSale(Sale saleCreated) throws Exception;
 }

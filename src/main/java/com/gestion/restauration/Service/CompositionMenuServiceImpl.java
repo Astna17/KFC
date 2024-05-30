@@ -21,7 +21,7 @@ public class CompositionMenuServiceImpl implements CompositionMenuService{
     }
 
     @Override
-    public int getCompositionMenuById(int idComposition) throws SQLException {
+    public List<CompositionMenu> getCompositionMenuById(int idComposition) throws SQLException {
         return compositionMenuRepository.getCompositionMenuById(idComposition);
     }
 
